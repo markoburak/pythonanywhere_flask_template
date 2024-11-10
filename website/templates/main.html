@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block optionalCSS %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+{% endblock %}
+{% block title %}Main{% endblock %}
+
+{% block content %}
+ <div class="d-flex justify-content-center bg-secondary ninety-five">
+        <div class="container mt-5">
+            <div class="row justify-content-center text-white">
+            {% for note in notes %}
+                  <h1>{{loop.index}}</h1>
+                  <p>{{ note.item }}</p>
+                  <p>{{ note.created_date }}</p>
+            {% endfor %}
+            <form action="/add_note" method="POST" id="add_note">
+
+                <label for="item_name" class="text-white">Item name</label>
+              <div class="col-12">
+                <input type="text" name="item_name" id="item_name" form="add_note">
+
+                <button type="submit" class="btn btn-primary">Add Item</button>
+              </div>
+            </form>
+        </div>
+        </div>
+    </div>
+{% endblock %}
